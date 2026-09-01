@@ -1,0 +1,837 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[galician]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage{bm}
+
+
+\begin{document}
+
+\section*{Preámbulo}
+
+Este documento é unha recompilación de apuntes útiles e comentarios adicionais feitos durante a miña docencia no GI2 de Física Cuántica II, no curso 2025/2026.
+
+O seu obxectivo é condensar as \guillemotleft ideas felices\guillemotright ~ que hai que ter en conta á hora de resolver os problemas e expandir as consecuencias dalgúns dos resultados, para entendelos mellor e asentalos de cara a cursos máis avanzados.
+
+Poden conter erratas ou explicacións pouco claras. Para calquera comentario, podedes contactarme a través do meu correo.
+
+\vspace{10mm}
+
+\begin{flushright}
+	Víctor Díaz Díaz \\
+	victor.diaz@usc.es
+\end{flushright}
+
+\newpage
+
+\section*{Boletín 1: Formalismo en espazos de dimensión finita}
+
+\subsection*{Problema 2}
+
+Durante a demostración da desigualdade triangular, debemos empregar a relación
+\begin{equation}
+	\braket{\varphi}{\chi} + \braket{\chi}{\varphi} \leq 2 |\braket{\varphi}{\chi}|.
+\end{equation}
+\noindent
+Esta relación cúmplese en xeral para calquera número complexo $c \in \mathbb{C}$, para o cal
+\begin{equation}
+	c + c^* \leq 2 |c|.
+\end{equation}
+\noindent
+A demostración desta identidade é sinxela de entender gráficamente: dado un número complexo $c$, podemos velo coma un vector en $\mathbb{R}^2$. Sumarlle outro número complexo $c'$ correspóndese con debuxar dende a súa punta dito número. É sinxelo comprobar que o número resultante acadará o seu módulo máximo cando o ángulo formado entre $c$ e $c'$ sexa $\theta = 0$. No caso no que $c' = c$, os módulos de ambos números serán iguais, e polo tanto a lonxitude máxima será $2 |c|$. En calquera outro caso, $\theta \neq 0$, o módulo será menor que $2 |c|$.
+
+\subsection*{Problema 5}
+
+Recórdese que a hermiticidade dun operador determina as propiedades dos seus autovalores. Para un operador hermítico, os autovalores deben ser reais.
+
+\subsection*{Problema 7}
+
+Durante o proceso de calcular os autovalores correspondentes a un operador, habitualmente as dúas ecuacións resultantes para as súas compoñentes son equivalentes. Esto proporciona un conxunto infinito de solucións posibles, usualmente podendo atopar unha expresión da forma
+\begin{equation}
+	\ket{\lambda} = \begin{pmatrix} \lambda^{(1)} \\ \lambda^{(2)} \end{pmatrix}, ~~~ \text{onde}~ \lambda^{(2)} = \lambda^{(2)}(\lambda^{(1)} ). 
+\end{equation}
+\noindent
+Todas as posibles formas de $\ket{\lambda}$ diagonalizan o operador, pero só unha forma será ortonormal. Basta con impoñer esta condición para atopala. Habitualmente, o máis sinxelo será tomar $\lambda^{(1)} = 1$ e obter $\lambda^{(2)}$ a partir deste, posteriormente dividindo ambas compoñentes pola norma correspondente.
+
+\subsection*{Problema 8}
+
+A exponencial dun operador obtense empregando o desenvolvemento en serie correspondente:
+\begin{equation}
+	e^A := \sum_{k=0}^\infty \frac{A^k}{k!}.
+\end{equation}
+\noindent
+Do mesmo xeito, obtense o operador correspondente a $f(A)$ a partir da serie de $f(x)$.
+
+\begin{center} \hrule \end{center}
+
+Dado un operador antihermítico, a súa exponencial será unitaria:
+\begin{equation}
+	A^\dagger = -A ~~ \Longrightarrow ~~ A^{-1} = A^\dagger.
+\end{equation}
+\noindent
+Similarmente, a exponencial dun operador antisimétrico será ortogonal:
+\begin{equation}
+	A^\mathrm{T} = -A ~~ \Longrightarrow ~~ A^{-1} = A^\mathrm{T}.
+\end{equation}
+\noindent
+Nótese que o segundo caso é a versión real do primeiro.
+
+\begin{center} \hrule \end{center}
+
+Durante a demostración, despois de facer o produto da exponencial co seu hermítico conxugado, chegaremos ao sumatorio
+\begin{equation}
+	\sum_{n=0}^\infty \sum_{m=0}^\infty \frac{(-1)^m}{n! \, m!} A^{n+m}.
+\end{equation}
+\noindent
+Para continuar, debemos notar que distintas combinacións de $m$ e $n$ darán lugar á mesma potencia de $A$, polo que os coeficientes correspondentes combinaránse:
+\begin{equation}
+\begin{split}
+	A^0 &~~ \Longrightarrow ~~ n=0, m=0, \\
+	A^1 &~~ \Longrightarrow ~~ \{n=0, m=1\}, \{n=1,m=0\}, \\
+	A^2 &~~ \Longrightarrow ~~ \{n=2,m=0\}, \{n=1,m=1\},\{n=0,m=2\}, \\
+	\mathrm{etc}.
+\end{split}
+\end{equation} 
+\noindent
+Tendo en conta esto, poderemos reescribir
+\begin{equation}
+	\sum_{n=0}^\infty \sum_{m=0}^\infty \frac{(-1)^m}{n! \, m!} A^{n+m} = \sum_{k=0}^\infty A^k \left ( \sum_{l=0}^k \frac{(-1)^l}{(k-l)! \, l!} \right) \equiv \sum_{k=0}^\infty A^k \mathcal{S}(k).
+\end{equation}
+\noindent
+A suma $\mathcal{S}(k)$ será $\mathcal{S}(0) = 1$, e para $k \geq 1$ teremos
+\begin{equation}
+	\mathcal{S}(k) = \sum_{l=0}^k \frac{(-1)^l}{(k-l)! \, l!} = \sum_{l=0}^k \frac{(-1)^l}{k!} \begin{pmatrix} k \\ l \end{pmatrix}.
+\end{equation}
+\noindent
+Empregando o teorema do binomio:
+\begin{equation}
+	\sum_{l=0}^k \begin{pmatrix} k \\ l \end{pmatrix} x^l = (1+x)^l,
+\end{equation}
+\noindent
+atoparemos que $\mathcal{S}(k) = 0$ para $k \geq 1$.
+
+\subsection*{Problema 10}
+
+Á hora de demostrar certas propiedades dos operadores, será suficiente demostralas considerando que o operador é diagonalizable, o que habitualmente simplifica os cálculos.
+
+Esto débese a que o conxunto de matrices complexas $n \times n$ diagonalizables é un subconxunto Zariski-denso do conxunto completo de matrices complexas. Pode demostrarse que esta propiedade implica que as identidades con forma polinómica ou involucrando determinantes e trazas de matrices diagonalizables son extensibles ás non diagonalizables.
+
+\subsection*{Problema 11}
+
+Que dous operadores conmuten significa que poden cambiarse de orde nun produto:
+\begin{equation}
+	[A,B] = 0 ~~ \Longrightarrow ~~ AB = BA.
+\end{equation}
+
+\begin{center} \hrule \end{center}
+
+Á hora de demostrar fórmulas xerais dependentes dun parámetro, $m$, habitualmente pode abordarse de dous xeitos: de xeito directo ou por inducción.
+\begin{itemize}
+	\item[$\bullet$] De xeito directo, deberemos manipular un dos lados da ecuación ata conseguir o outro. Esto pode ser complicado ao traballar con expresións xerais, especialmente cando aparecen operacións como derivadas ou integrais.
+	\item[$\bullet$] Por inducción, debemos comprobar que se a fórmula se verifica para $m=1$ e asumimos que se verifica para $m$, tamén se verificará para $m+1$. Esta é a forma apropiada de facer unha demostración por inducción, aínda que en moitos casos bastará con expandir unhos poucos casos ($m=1$, $m=2$, $m=3$, ...) e identificar o patrón que aparece.
+\end{itemize}
+
+\subsection*{Problema 12}
+
+Algunhas identidades alxebraicas demóstranse mediante métodos de cálculo real ou complexo. Esto consiste habitualmente en xeralizar a expresión ca que traballamos:
+\begin{equation}
+	e^A B e^{-A} ~~ \mapsto ~~ \mathcal{F}(s) = e^{sA} B e^{-sA}, ~~ s \in \mathbb{R},
+\end{equation}
+\noindent
+empregar ferramentas de cálculo para reescribir esta función dun xeito conveniente e tomar $s=1$ ao final do procedemento.
+
+\subsection*{Problema 13}
+
+Os operadores $A$ nun espazo de Hilbert son, en xeral, complexos. Polo tanto, ao aplicar unha función sobre eles, $f(A)$, debemos aplicar a extensión aos números complexos de dita función.
+
+No apartado b) deste problema atopámonos co coeficiente $\log(-1)$, que diverxe ao considerar só números reais. Sen embargo, empregando a súa extensión complexa atopamos un resultado finito: $\log(z) = \log(|z|) + i \theta + 2\pi i k$, onde $z = |z|e^{i\theta}$.
+\begin{comment}
+\subsection*{Problema 14}
+
+É interesante a propiedade
+\begin{equation}
+	\sum_{k=2}^\infty \frac{A^{k-2}}{k!} \sum_{n=1}^{k-1} n = \frac{1}{2} \sum_{k=0}^\infty \frac{1}{k!}
+\end{equation}
+\end{comment}
+
+\newpage
+\section*{Boletín 2: Postulados da mecánica cuántica}
+
+\subsection*{Problema 1}
+
+Como o operador se nos proporciona cos produtos $\ketbra{v_1}{v_2}$ e $\ketbra{v_2}{v_1}$, é tentador escribir o vector $\ket{\psi}$ en función dos mesmos vectores para simplificar as operacións. Sen embargo, non se nos indica que $\{ \ket{v_i}, \ket{v_2} \}$ sexa unha base, polo que baixo ningún concepto debemos asumilo. Podemos comprobalo explícitamente e actuar en consecuencia.
+
+\begin{center} \hrule \end{center}
+
+Nótese que as formas matriciais dos operadores e vectores sempre se expresan con respecto a unha base determinada, a cal será $\left\{ \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \end{pmatrix} \right\}$ se non se indica o contrario. A forma usual das matrices de Pauli:
+\begin{equation}
+	\sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},~~~ \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix},~~~ \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix},
+\end{equation}
+\noindent
+está dada nesa base, que se toma como a dos autoestados de $\sigma_z$.
+
+\subsection*{Problema 2}
+
+Será moi habitual que os estados cos que se traballa se describan a partir do resultado dunha medida, con expresións do estilo de:
+\begin{equation*}
+	\text{\guillemotleft ao medir o operador $A$ obtemos $\alpha$ \guillemotright}. 
+\end{equation*}
+\noindent
+Esta definición describe a propiedade
+\begin{equation}
+	A\ket{\psi} = \alpha \ket{\psi},
+\end{equation}
+\noindent
+polo que o sistema está no autoestado correspondente.
+
+\begin{center} \hrule \end{center}
+
+Neste problema e en moitos outros posteriores, aparecerá recurrentemente a necesidade de empregar identidades trigonométricas para a suma de ángulos e o ángulo medio.
+
+\subsection*{Problema 5}
+
+Dado un vector xeral $\textbf{n} = (\sin\theta \cos \phi, \sin\theta \sin\phi, \cos\theta)$, temos os valores medios:
+\begin{equation}
+\begin{gathered}
+	\bra{\pm \textbf{n}} (\textbf{n} \cdot \bm{\sigma}) \ket{\pm \textbf{n}} = \pm 1, \\
+	\bra{\pm \textbf{n}} \bm{\sigma} \ket{\pm \textbf{n}} = \pm \textbf{n}, \\
+	\bra{\pm \textbf{n}} (\textbf{n} \cdot \textbf{S}) \ket{\pm \textbf{n}} = \pm \frac{\hbar}{2}, \\
+	\bra{\pm \textbf{n}} \textbf{S} \ket{\pm \textbf{n}} = \pm \frac{\hbar}{2}\textbf{n},
+\end{gathered}
+\end{equation}
+
+\subsection*{Problema 6}
+
+Aínda que non se indique, compre recordar sempre as propiedades básicas que deben ter os estados $\ket{\psi} = \alpha \ket{1} + \beta\ket{2}$ dun espazo de Hilbert:
+\begin{itemize}
+	\item[$1)$] Complexidade dos coeficientes: $\alpha = |\alpha| e^{i\theta_1}$, $\beta = |\beta|e^{i\theta_2}$.
+	\item[$2)$] Normalización: $|\braket{\psi}{\psi}|^2 = 1 ~\Leftrightarrow~ |\alpha|^2 + |\beta|^2 = 1$.
+	\item[$3)$] As fases globais son físicamente irrelevantes: $e^{i\xi} \ket{\psi} \cong \ket{\psi}$
+\end{itemize}
+\noindent
+En moitas ocasións, será necesario ter en conta estas propiedades para determinar os coeficientes a partir dos datos que se dan.
+Combinando $1)$ e $3)$, será habitual tomar un dos coeficientes como real, $\alpha = |\alpha|$, e considerar só a fase relativa no outro: $\beta = |\beta|e^{i\theta}$, onde $\theta = \theta_2 - \theta_1$.
+
+\begin{center} \hrule \end{center}
+
+Ao ter só datos de observables (valores medios de operadores hermíticos), a información sobre fases globais pérdese. Esto, na práctica, significa que usualmente só podemos chegar a definir unívocamente o módulo ao cadrado dos coeficientes complexos. Por exemplo, no caso deste problema temos:
+\begin{equation}
+	|\alpha|^2 = \frac{1}{4}, ~~~~ |\beta|^2 = \frac{3}{4}.
+\end{equation}
+\noindent
+Como resultado teremos, entón, catro posibles combinacións tendo en conta os signos posibles de cada coeficiente. Sen embargo, precisamente debido á propiedade $3)$, todos os casos serán físicamente equivalentes, xa que o signo negativo é unha fase que pode reabsorberse na fase de $\beta$, $\theta \mapsto \theta \pm \pi$. Así, sempre poderemos escoller o caso no que ambos coeficientes son positivos: $|\alpha|= 1/2$, $|\beta| = \sqrt{3}/2$. 
+
+\newpage
+\section*{Boletín 3: Postulados. Entrelazamento}
+
+\subsection*{Problema 1}
+
+Diagonalizar un operador consiste en escribilo na base conformada polos seus autoestados, de xeito que os únicos elementos non nulos na súa representación matricial serán os diagonais e corresponderánse cos autovalores asociados. 
+
+Por este motivo, para o operador $A$ atoparase que un dos seus autovalores é $\alpha_3$. Nese caso, o procedemento habitual para calcular o autoestado correspondente, resolvendo o sistema $(A - \lambda_i I)\ket{\lambda_i} = 0$, non serve. Esto, sen embargo, non é un problema porque na base de autoestados pode representarse simplemente como $\ket{\lambda_i} = \begin{pmatrix} 0 & 0 & 1 \end{pmatrix}^\mathrm{T}$.
+
+\begin{center} \hrule \end{center}
+
+En xeral, se unha matriz está conformada por bloques na súa diagonal, bastará con diagonalizar cada un dos bloques por separado en lugar de traballar ca matriz completa. Así, dada unha matriz
+\begin{equation}
+	A = \begin{pmatrix} a_{11} & a_{12} & 0 \\ a_{21} & a_{22} & 0 \\ 0 & 0 & a_{33} \end{pmatrix},
+\end{equation}
+\noindent
+só teremos que diagonalizar o bloque
+\begin{equation}
+	A_{1} = \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix},
+\end{equation}
+
+\subsection*{Problema 3}
+
+Cando se proporcione algunha indicación do tipo $A \gg B$, a utilidade sempre será poder despreciar algún termo no resultado. Habitualmente esto poderá facerse cando as dúas magnitudes aparezan nun cociente cunha potencia maior que 1:
+\begin{equation}
+	a \gg b ~~\Longrightarrow~~ \left(\frac{b}{a}\right)^n \approx 0, ~~ n \geq 2.
+	\label{eq:b_over_a}
+\end{equation}
+
+No caso deste problema indícasenos que $d E \gg A$ (ou $d E \ll A$), pero ambas manitudes aparecen nunha suma dentro dunha raíz cadrada, $\sqrt{(d E)^2 + A^2}$. Para poder facer a simplificación apropiada, é necesario reescribir primeiro a expresión como
+\begin{equation}
+	\sqrt{a^2 + b^2} = \sqrt{a^2 \left( 1 + \frac{b^2}{a^2} \right)} = a \sqrt{1 + \left(\frac{b}{a}\right)^2}.
+\end{equation}
+\noindent
+A continuación, tendo en conta precisamente a relación \eqref{eq:b_over_a}, podemos aproximar a raíz cadrada pola súa serie de Taylor:
+\begin{equation}
+	\sqrt{1+x^2} = 1  + \frac{x^2}{2} + \mathcal{O}(x^4),
+\end{equation}
+\noindent
+e desprezar o termo cuadrático, de xeito que
+\begin{equation}
+	a \gg b ~~\Longrightarrow~~ \sqrt{a^2 + b^2} \approx a.
+\end{equation}
+
+\subsection*{Problema 4}
+
+Un operador xeral pode darse con respecto a unha base. Esto significa que, nesa base, o operador pode escribirse coma unha combinación lineal dos proxectores dos vectores dela. É dicir, dada unha base $\{\ket{a_i}\}$, escribiremos un operador xeral $A$ como
+\begin{equation}
+	A = \left( \sum_i \ketbra{a_i} \right) A \left( \sum_j \ketbra{a_j} \right) = \sum_{i,j} \mel{a_i}{A}{a_j} \ketbra{a_i}{a_j}
+	\label{eq:A_a}
+\end{equation}
+\noindent
+onde empregamos a resolución da identidade $\sum_i \ketbra{a_i} = I$. Os escalares $\mel{a_i}{A}{a_j}$ serán os coeficientes con respecto á base $\{\ket{a_i}\}$.
+
+Facer un cambio de base non será máis que introducir de novo resolucións da identidade, pero empregando outra base na suma:
+\begin{equation}
+	A = \left( \sum_m \ketbra{b_m} \right) A \left( \sum_n \ketbra{b_n} \right) = \sum_{m,n} \mel{b_m}{A}{b_n} \ketbra{b_m}{b_n}
+\end{equation}
+\noindent 
+e combinando este resultado ca expresión \eqref{eq:A_a} para expandir o operador $A$:
+\begin{equation}
+\begin{split}
+	A &= \left( \sum_m \ketbra{b_m} \right) A \left( \sum_n \ketbra{b_n} \right) \\
+	&=	\sum_{m,n} \ketbra{b_m} \left( \sum_{i,j} \mel{a_i}{A}{a_j} \ketbra{a_i}{a_j} \right) \ketbra{b_n} \\
+	&= \sum_{m,n} \sum_{i,j} \braket{b_m}{a_i} \braket{a_j}{b_n} \mel{a_i}{A}{a_j} \ketbra{b_m}{b_n}. 
+\end{split}
+\end{equation}
+\noindent
+Así, os coeficientes na nova base $\{\ket{b_i}\}$ serán os escalares $\braket{b_m}{a_i} \braket{a_j}{b_n} \mel{a_i}{A}{a_j}$.
+
+Esta é a formulación xeral, pero habitualmente traballaremos con representacións matriciais concretas dos operadores. Neste problema concreto, temos o hamiltoniano escrito na base $\{a_i\} = \{\ket{1},\ket{2}\}$ e queremos escribilo na base $\{b_m\} = \{\ket{+},\ket{-}\}$. Para elo imos necesitar tres tipos de elementos: $\mel{a_i}{H}{a_j}$, $\braket{b_m}{a_i}$ e $\braket{a_j}{b_n}$. Os primeiros podemos lelos directamente da matriz pero, como se calculan os outros dous?
+
+O importante é coñecer como se realiza un cambio de base entre as que esteamos empregando, pero non a forma concreta delas. A base orixinal sempre pode tomarse como a canónica, simplificando os cálculos a facer. Deste xeito, podemos elixir sen pérdida de xeneralidade
+\begin{equation}
+	\ket{1} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, ~~~~ \ket{2} = \begin{pmatrix} 0 \\ 1 \end{pmatrix},
+\end{equation}
+\noindent
+e obter a forma matricial da nova base en función desta segundo
+\begin{equation}
+	\ket{\pm} = \frac{1}{\sqrt{2}} \Big ( \ket{1} \pm \ket{2} \Big ),
+\end{equation}
+\noindent
+seguindo a convención habitual para definir estes estados.
+
+\begin{center} \hrule \end{center}
+
+As representacións matriciais sempre están escritas con respecto a unha base, e é importante ter claro cal. Se queremos operar con vectores e operadores en forma matricial, todos deben estar escritos na mesma base para que o resultado sexa consistente.
+
+\subsection*{Problema 5}
+
+Dous operadores que conmuten entre si, $[O_1,O_2]=0$, poden diagonalizarse na mesma base. É dicir, comparten os mesmos autoestados normalizados, pero non os mesmos autovalores asociados. 
+
+Para demostralo, asumamos que $O_1$ ten un autoestado $\ket{\psi_i}$ non dexenerado, de xeito que
+\begin{equation}
+	O_1 \ket{\psi_i} = \epsilon_i \ket{\psi_i}.
+\end{equation} 
+\noindent
+Dado que $O_1 O_2 = O_2 O_1$, obtemos
+\begin{equation}
+	O_2 \left( O_1 \ket{\psi_i} \right) = O_2 \left( \epsilon_i \ket{\psi_i} \right) ~~ \Longrightarrow ~~ O_1 \left( O_2 \ket{\psi_i}\right) = \epsilon_i \left( O_2 \ket{\psi_i} \right).
+\end{equation}
+\noindent
+A segunda igualdade indícanos que o estado $O_2 \ket{\psi}$ tamén é un autoestado de $O_1$ con autovalor $\epsilon_i$ e, dado que o operador é non dexenerado, necesariamente dous autoestados co mesmo autovalor teñen que ser proporcionais entre si. Este requerimento tradúcese na expresión
+\begin{equation}
+	O_2 \ket{\psi_i} = \epsilon'_i \ket{\psi_i},
+\end{equation}
+\noindent
+que indica precisamente que $\ket{\psi_i}$ tamén é un autoestado de $O_2$, tal e como queriamos demostrar. Este argumento pode repetirse para todos os autoestados non dexenerados dos operadores dados.
+
+\begin{center} \hrule \end{center}
+
+Este problema explota esta propiedade para simplificar a resolución. Diagonalizar directamente o operador $H$ é complicado por ter $\dim(H)=6$. Sen embargo, se definimos un operador $U$ que ten o efecto de mover o electrón do átomo $n$ ao $n-1$,
+\begin{equation}
+	U_\mathrm{p}\ket{\phi_n} = \ket{\phi_{n-1}},
+\end{equation}
+\noindent
+os seus autovalores e autoestados serán moito máis simples de calcular. Unha vez obtidos os autoestados $\{\ket{\chi_i}\}$ de $U_\mathrm{p}$, os autoestados de $H$ serán os mesmos e os autovalores virán dados polos produtos $h_k = \mel{\chi_k}{H}{\chi_k}$.
+
+Ao calcular os 6 estados que diagonalizan $U_\mathrm{p}$, veremos que algúns teñen a mesma enerxía, e polo tanto o operador é dexenerado. Os autoestados adecuados serán os non dexenerados máis as combinacións simétricas e antisimétricas dos dexenerados, e o hamiltoniano tamén será dexenerado.
+
+\subsection*{Problema 6}
+
+O operador identidade de dimensión 2 máis as matrices de Pauli, $\{I,\sigma_1,\sigma_2,\sigma_3\}$, conforman unha base para os operadores hermíticos de dimensión 2. Así, un operador hermítico xeral, $\rho$, poderá escribirse como
+\begin{equation}
+	\rho = a_0 I + i a_k \sigma_k.
+\end{equation}
+\noindent
+Para obter os coeficientes $a_\mu$, debemos calcular trazas:
+\begin{equation}
+\begin{gathered}
+	a_0 = \frac{1}{2}\mathrm{Tr}(\rho), \\
+	a_k = \frac{1}{2} \mathrm{Tr}(\sigma_k \rho),
+\end{gathered}
+\end{equation}
+\noindent
+onde se usaron as relacións $\sigma_i \sigma_j = \delta_{ij}I + i\epsilon_{ijk}\sigma_k $ e $\mathrm{Tr}(\sigma_i) = 0$.
+
+\subsection*{Problema 9}
+
+O vector de estado $\ket{\chi} = \frac{1}{\sqrt{2}} (\ket{+} + \ket{-})$ e o operador densidade $\rho = \frac{1}{2} (\ketbra{+}{+} + \ketbra{-}{-})$, onde $\ket{\pm}$ son os autoestados de $\sigma_3$, teñen características similares, pero representan dous sistemas físicos diferentes.
+
+É sinxelo comprobar que as probabilidades de medir os estados da base en ambos casos son iguais: 
+\begin{equation}
+\begin{gathered}
+	|\braket{\pm}{\chi}|^2 = \mel{\pm}{\rho}{\pm} = \frac{1}{2},
+\end{gathered}
+\end{equation}
+\noindent
+pero que medir calquera outro estado non proporcionará o mesmo resultado en xeral. Por exemplo, se medimos os autoestados de $\sigma_1$, teremos
+\begin{equation}
+\begin{gathered}
+	|\braket{\pm x}{\chi}|^2 = \frac{1}{2}(1 \pm 1), \\
+	\mel{\pm x}{\rho}{\pm x} = \frac{1}{2}.
+\end{gathered}
+\end{equation}
+\noindent
+Esto débese a que o operador $\rho$ non se corresponde co operador densidade adecuado para o estado $\ket{\chi}$. Este será
+\begin{equation}
+	\ketbra{\chi} = \frac{1}{2} \Big ( \ketbra{+} + \ketbra{+}{-} + \ketbra{-}{+} + \ketbra{-} \Big ),
+\end{equation}
+\noindent
+que ten elementos non diagonais diferentes aos do operador $\rho$. Estes elementos non diagonais codifican as fases relativas entre os elementos da base, que afectan ao resultado das medicións.
+
+\newpage
+\section*{Boletín 4: Entrelazamento}
+
+\subsection*{Problema 2}
+
+Á hora de escribir os operadores de sistemas de múltiples partículas como produtos tensoriais, é necesario ter coidado ca notación. No enunciado deste problema podemos ler
+\begin{equation}
+	H = \epsilon \sigma_z \otimes \sigma_z,
+\end{equation}
+\noindent
+pero esta notación pode ser confusa. Nótese que
+\begin{equation}
+	(\epsilon \sigma_z) \otimes \sigma_z \neq \sigma_z \otimes (\epsilon \sigma_z) \neq \epsilon (\sigma_z \otimes \sigma_z),
+\end{equation}
+\noindent
+o cal se pode demostrar fácilmente comprobando como actúan estes operadores sobre a base $\{\ket{\pm}\}$ de autoestados de $\sigma_z$.
+
+\begin{center} \hrule \end{center}
+
+En xeral, as igualdades entre operadores poden demostrarse aplicando ditos operadores sobre algún estado xenérico. A partir deso, pode deducirse que
+\begin{equation}
+	O_1\ket{\psi} = O_2\ket{\psi} ~~ \Longleftrightarrow~~ O_1 = O_2.
+\end{equation}
+
+No caso deste problema, o operador de evolución temporal contén potencias do hamiltoniano, $(\epsilon \sigma_z \otimes \sigma_z)^k$. Será sinxelo demostrar que
+\begin{equation}
+	(O_1 \otimes O_2)^k \ket{\psi \otimes \varphi} = O_1^k \ket{\psi} \otimes O_2^k \ket{\varphi} = (O_1^k \otimes O_2^k) \ket{\psi \otimes \varphi},
+\end{equation}
+\noindent
+e, polo tanto,
+\begin{equation}
+	(O_1 \otimes O_2)^k = O_1^k \otimes O_2^k.
+\end{equation}
+
+\subsection*{Problema 3}
+
+Dependento da fonte, podedes atopar diferentes xeitos de escribir a forma matricial dos estados $\ket{\pm \textbf{n}}$. Todas elas son físicamente equivalentes, pois pode comprobarse que a diferenza entre ditas posibilidades é unha fase global.
+
+Precisamente, este problema mostra como introducir rotacións nos eixos (engadir un desfase en $\theta$ e $\phi$) só ten o efecto de introducir unha fase global no estado, que é físicamente irrelevante.
+
+\subsection*{Problema 4}
+
+Esta dicusión está estraida de \cite{le_Bellac}.
+
+Consideremos unha partícula de espín 0 que decae en dúas de espín $1/2$ (por exemplo, un $\pi^0$, que decae nun par electrón-positrón $e^- e^+$). Se a partícula orixinal está en repouso, as resultantes sairán movendose en sentidos contrarios. 
+
+Deixaremos que se separen ata estar moi lonxe entre elas. A noción de \guillemotleft lonxe\guillemotright ~ ven determinada pola Relatividade Especial, e refírese a unha distancia suficiente para que non exista relación causal entre os dous puntos.
+Esto significa que existe algún sistema de referencia no que poden facerse simultáneos no tempo, e polo tanto un non pode ter efecto sobre o outro.
+De xeito formal, requerimos que o intervalo definido por dous puntos do espazo-tempo, $x^\mu = (t_x,\textbf{x})$ e $y^\mu = (t_y, \textbf{y})$, sexa tipo espazo. Esto significa que debe verificarse
+\begin{equation}
+	\Delta s^2 = (ct_x - ct_y)^2 - (\textbf{x} - \textbf{y})^2 < 0.
+\end{equation}
+\noindent
+As partículas de espín $1/2$ deben, polo tanto, estar separadas por un intervalo tipo espazo.
+
+Consideremos agora que cada partícula chega a un experimento de Stern-Gerlach no que se mide o seu espín con respecto a un eixo $\textbf{n}$. O $e^-$ chega a $\mathrm{SG}_1$ e o $e^+$ chega a $\mathrm{SG}_2$.
+Dúas partículas entrelazadas mostrarán perfecta anticorrelación nas medidas que se fagan sobre elas. Esto implica que, medindo un observable sobre unha delas poderemos saber tamén o valor deste sobre a outra
+Por exemplo, se o noso sistema está descrito polo estado de Bell
+\begin{equation}
+	\ket{\Phi} = \frac{1}{\sqrt{2}} \Big ( \ket{+-} - \ket{-+} \Big ),
+\end{equation}
+\noindent
+atoparemos que medir o espín de ambas partículas proporciona sempre o resultado
+\begin{equation}
+	(S_\textbf{n}^{(1)} \otimes S_\textbf{n}^{(2)}) \ket{\Phi} = -\frac{\hbar^2}{4}\ket{\Phi},
+\end{equation}
+\noindent
+que implica que, se SG$_1$ mide $+\hbar/2$ con respecto ao eixo $\textbf{n}$, SG$_2$ sempre mide $-\hbar/2$, e viceversa.
+
+Este fenómeno non é complicado de explicar cunha analoxía clásica: temos unha caixa con dúas bolas de cor vermello e azul e pedímoslle a dúas persoas que collan unha delas, sen mirar cal é. Despois, ambas persoas sepáranse de xeito que non poidan comunicarse. No momento no que unha vexa de que cor é a súa bola, pode saber de que cor é a da outra persoa con total precisión.
+
+Os problemas do caso cuántico aparecen cando repetimos o experimento variando o eixo de medición, $\textbf{n}'$. Neste caso atoparemos o mesmo resultado que no caso anterior: total anticorrelación. esto pode parecer evidente, pero plantexa un problema importante ao comparar este feito cos postulados da mecánica cuántica.
+Limitémonos a un dos dos aparellos, SG$_1$, por exemplo. Primeiro facemos unha medición para atopar o valor de $S_\textbf{n}^{(1)}$ e a continuación o de $S_{\textbf{n}'}^{(2)}$. A partir delas, como xa mencionamos, podemos determinar con total precisión os valores dos operadores $S_{\textbf{n}}^{(2)}$ e $S_{\textbf{n}'}^{(2)}$ sen medilos.
+Esto é problemático, xa que a consecuencia de que ambos operadores non conmuten, $[S_{\textbf{n}}^{(2)}, S_{\textbf{n}'}^{(2)}] \neq 0$, é que non poden coñecerse con total precisión simultáneamente, pero no sistema entrelazado parece ser posible.
+
+O paradoxo plantexado pode resolverse de dúas maneiras:
+\begin{itemize}
+	\item[i)] O aspecto probabilístico da mecánica cuántica é unha consecuencia de que a teoría está incompleta, pero as magnitudes físicas están ben definidas en todo momento (o que se denomina \textit{realismo}). Debería existir unha teoría de variables ocultas más xeral que a mecánica cuántica, na cal este fenómeno non sería unha inconsistencia.
+
+	\item[ii)] Os observables do sistema non está ben definido ata o momento de realizar a medición e, ao medir unha das partículas, a información do seu estado transmítese á outra a unha velocidade superior á da luz. Esto violaría o principio de localidade, que é fundamental na formulación da Relatividade Especial.
+\end{itemize}
+No seu artigo, Einstein, Podolsky e Rosen rexeitaron a opción ii), o cal non é sorprendente, sendo Einstein o pai da Relatividade Especial.
+
+Na busca de determinar se a mecánica cuántica era unha teoría incompleta ou non, Bell introduciu unhas desigualdades que permitirían determinar, a partir de certas medicións, se estes resultados empíricos son compatibles ou non con teorías de variables ocultas. Os experimentos de Aspect nos 1980s verificaron a violación destas desigualdades, descartando a posibilidade i).
+
+A consecuencia da violación das desigualdades de Bell é a noción de que non se pode formular unha teoría de variables ocultas que reproduza a estatística dos resultados observados, mentres que a mecánica cuántica si é capaz de facelo.
+De feito, existen resultados de medicións que quedan totalmente prohibidos ao traballar con teorías de variables ocultas. Este é o caso do estado GHZ. 
+
+O estado GHZ é un estado de tres partículas definido como
+\begin{equation}
+	\ket{\mathrm{GHZ}} = \frac{1}{\sqrt{2}} \Big ( \ket{+++} - \ket{---} \Big ).
+\end{equation}
+\noindent
+Este estado está maximalmente entrelazado. Consideremos agora os operadores cuánticos
+\begin{equation}
+\begin{gathered}
+		\Sigma_a = \sigma_x^{(a)} \otimes \sigma_y^{(b)} \otimes \sigma_y^{(c)}, \\
+		\Sigma_b = \sigma_y^{(a)} \otimes \sigma_x^{(b)} \otimes \sigma_y^{(c)}, \\
+		\Sigma_c = \sigma_y^{(a)} \otimes \sigma_y^{(b)} \otimes \sigma_x^{(c)},
+\end{gathered}
+\end{equation}
+\noindent
+é dicir, o operador $\Sigma_i$ mide o espín na direción $x$ da partícula $i$-ésima e o resto na direción $y$. A partir destes operadores construimos outro segundo
+\begin{equation}
+	\Sigma := -\Sigma_a \Sigma_b \Sigma_c,
+\end{equation}
+\noindent
+para o cal o estado GHZ é un autoestado:
+\begin{equation}
+	\Sigma \ket{\mathrm{GHZ}} = - \ket{\mathrm{GHZ}}.
+	\label{eq:sigma_q}
+\end{equation}
+Agora, imos asumir que o espín está ben definido nunha teoría de variables ocultas. Esto implica que $[\sigma^{(a)}_i,\sigma^{(b)}_j] = 0$ e, polo tanto, a orde das medicións non afecta ao resultado. Asumindo esto, pode verse que
+\begin{equation}
+	\Sigma \ket{\mathrm{GHZ}} = + \ket{\mathrm{GHZ}},
+\end{equation}
+\noindent
+en contradición total co resultado cuántico. De novo, esto serve como proba de que a mecánica cuántica non está incompleta: ao realizar as medidas correspondentes ao operador $\Sigma$, atópase que o resultado é \eqref{eq:sigma_q}, e polo tanto a solución i) para o paradoxo EPR non pode ser a correcta.
+
+Sen embargo, esto non implica necesariamente que a localidade se viole nunha teoría cuántica. O aspecto importante a ter en conta con respecto ás medicións que se trataron anteriormente é que, a pesar de que o observable do sistema 2 está totalmente anticorrelacionado co do sistema 1, os resultados das nosas medicións son totalmente aleatorios e, polo tanto, non poden empregarse para codificar información e transmitila entre o sistema 1 e o sistema 2. Para elo, sería necesaria unha clave que debería ser transmitida por un canle clásico.
+
+A terceira vía para reconciliar a mecánica cuántica co principio de localidade é considerar que o estado non é separable: a pesar de que ambas partes se encontren moi lonxe, o estado entrelazado segue correspondéndose cun único sistema e, polo tanto, non se produce ningún tipo de interación. Realizar unha medición sobre unha das partículas proporciona información sobre a outra, pero ambos resultados son simultáneamente aleatorios.
+
+\subsection*{Problema 7}
+
+Dado un estado $\ket{\psi}$, para clonalo será necesario atopar un operador unitario $U$ que verifique
+\begin{equation}
+	U\ket{\psi \otimes \varphi} = \ket{\psi \otimes \psi}.
+\end{equation}
+\noindent
+Nótese que $U$ é un operador que actúa sobre os dous estados. Asumindo que tal operador existe e desenvolvendo ambos termos, atopamos a ecuación
+\begin{equation}
+	c_0 \ket{0 \otimes 0} + c_1 \ket{1 \otimes 1} = c_0^2\ket{0 \otimes 0} + c_0 c_1 \ket{0 \otimes 1} + c_1 c_0 \ket{1 \otimes 0} + c_1^2 \ket{1 \otimes 1},
+\end{equation} 
+\noindent
+onde expandimos $\ket{\psi} = c_0\ket{0} + c_1 \ket{1}$. Esta ecuación non se verifica para un estado xenérico, pero podemos ver que si o fai se escollemos
+\begin{equation}
+	c_0 = 0, ~~ c_1^2 = c_1 ~~~~\text{ou}~~~~ c_1 = 0, ~~ c_0^2 = c_0.
+\end{equation}
+\noindent
+É dicir, se o noso estado $\ket{\psi}$ é exactamente un dos estados da base.
+
+\subsection*{Problema 8}
+
+Despois dunha medida, o novo estado seguirá sendo proporcional aos termos que non son ortogonais ao estado medido, pero deberemos volver a normalizar o estado resultante. Neste problema medimos o estado $\ket{+}$ na primeira partícula, polo que o estado despois de medir será
+\begin{equation}
+	\ket{\psi_+} = \frac{1}{\mathcal{N}} \left(\frac{\sqrt{2} + i}{\sqrt{20}}\ket{+++} + \frac{1}{\sqrt{2}}\ket{+++-} + \frac{1}{\sqrt{10}}\ket{+---} \right),
+\end{equation}
+\noindent
+onde $\mathcal{N}$ é un novo factor de normalización que deberemos recalcular facendo $\braket{\psi_+}{\psi_+} = 1$.
+
+\newpage
+\section*{Boletín 5: Entrelazamento e mecánica ondulatoria}
+
+\subsection*{Problema 1}
+
+Neste problema demóstrase a violación da desigualdade CHSH. Relacionado con esta desigualdade, pode prepararse un xogo que ten distintas probabilidades de gañarse en función de se se empregan estados cuánticos ou non \cite{CHSH_game}.
+
+Sexan dous xogadores, $A$ e $B$, e un intermediario $C$. Ambos xogadores poden comunicarse co intermediario pero non entre si durante o xogo, aínda que poden acordar unha estratexia antes de empezar. O procedemento do xogo é o seguinte:
+\begin{itemize}
+	\item[1)] O intermediario $C$ elixe dous bits aleatorios, $\{x,y\}$ onde $x,y \in \{0,1\}$.
+
+	\item[2)] O intermediario envía o bit $x$ ao xogador $A$ e o bit $y$ ao xogador $B$.
+
+	\item[3)] Os xogadores $A$ e $B$ responden cada un cun bit elixido, $x'$ e $y'$ respectivamente.
+
+	\item[4)] O intermediario $C$ compara os bits enviados cos recibidos: se se verifica a expresión $x' \oplus y' = x \wedge y$, os xogadores gañan. Os operadores $\oplus$ e $\wedge$ correspóndense cos operadores lóxicos XOR e AND respectivamente.
+\end{itemize}
+
+\noindent
+Pode demostrarse que, de xeito clásico, a probabilidade de gañar dos xogadores satúrase ao 75\%. Sen embargo, se permitimos que ambos xogadores compartan un estado entrelazado e basean a súa eleción de bits en función do resultado de realizar medidas sobre dito estado, a probabilidade de gañar sube ata aproximadamente o 85\%.
+
+É importante destacar que non se está transmitindo información entre os xogadores con esta estratexia, pero o feito de que baseen as súas decisións no resultado de medir sobre un estado entrelazado introduce unha correlación adicional sobre os bits escollidos, e polo tanto as súas probabilidades de gañar aumentan.
+
+\subsection*{Problema 2}
+
+En moitas ocasións atoparedes, no proceso de calcular unha integral, a indicación:
+\begin{align*}
+	\text{\guillemotleft (...) facendo integración por partes (...) \guillemotright}.
+\end{align*}
+Na miña opinión, sería moita máis axeitado dicir que se está a usar a \textit{regra da cadea}: tendo un integrando composto do produto dunha derivada e outra función, desexamos mover a derivada ao outro termo para integralo máis facilmente. Esto conséguese empregando a regra da cadea, que é a identidade diferencial
+\begin{equation}
+	\frac{\partial}{\partial x} (\psi^*(x) \varphi(x)) = \left( \frac{\partial \psi^*}{\partial x}\right) \varphi(x) + \psi^*(x) \left( \frac{\partial \varphi}{\partial x}\right)
+\end{equation}
+\noindent
+e sustituindo o termo que temos polo resto, que ten o efecto de cambiar a derivada de posición e engadir unha derivada total á integral. Este termo adicional será fácil de calcular empregando o teorema fundamental do cálculo:
+\begin{equation}
+	\int_{x_1}^{x_2} \mathrm{d}x \, \frac{\partial}{\partial x} (\psi^*(x) \varphi(x)) = \psi^*(x) \varphi(x) \Big |_{x_1}^{x_2}.
+\end{equation}
+\noindent
+En xeral desexaremos que este termo se anule. Esto pode darse en dúas situacións diferentes:
+\begin{itemize}
+	\item[i)] Os límites abranguen todo o espazo, $x_1 = -\infty$ e $x_2 = \infty$: neste caso requerimos que as funcións sexan de cadrado integrable, $L^2$, para que tendan a cero rápidamente no infinito. Así, o termo anúlase.
+
+	\item[ii)] Os límites son finitos: neste caso é necesario que as funcións sexan periódicas, de xeito que $\psi^*(x_1) = \psi^*(x_2)$ e $\varphi(x_1) = \varphi(x_2)$ e o termo se anule.
+\end{itemize}
+
+En conclusión, \guillemotleft integrar por partes\guillemotright é a versión integral de \guillemotleft derivar empregando a regra da cadea\guillemotright.
+
+\subsection*{Problema 3}
+
+Nótese que a forma do operador de translacións espaciais,
+\begin{equation}
+	T(a) = e^{-\frac{i}{\hbar}a P},
+\end{equation}
+\noindent
+é similar á forma do operador de evolución temporal,
+\begin{equation}
+	U(t) = e^{-\frac{i}{\hbar}t H},
+\end{equation}
+\noindent
+onde o operador momento e o hamiltoniano teñen papeis equivalentes. Inspirados por este feito, podemos intentar definir un operador tempo, $\mathcal{T}$, que sería equivalente ao operador posición, $X$; actuaría sobre os estados como
+\begin{equation}
+	\mathcal{T}\ket{t} = t \ket{t}
+\end{equation}
+ e tería unha relación de conmutación canónica co hamiltoniano:
+\begin{equation}
+	[\mathcal{T},H] = i\hbar.
+\end{equation}
+\noindent
+Sen embargo, como xa se viu no problema 5 do boletín 3, que dous operadores conmuten implica que o seu espectro é similar (os seus autoestados son similares). Esto fai que non sexa posible definir un $\mathcal{T}$ axeitado, xa que mentres o tempo toma un infinito continuo de valores, os hamiltonianos en xeral teñen estados fundamentais.
+
+Esto é un problema porque, a continuación de formular unha teoría cuántica, desexaríamos combinala ca Relatividade Especial e Xeral. Nestas últimas teorías, tempo e espazo teñen presencia equivalente, pero o feito de que o espazo se represente como un operador e o tempo coma unha etiqueta dos estados máis o feito de que na ecuación de Schrödinguer cada variable apareza cunha derivada de diferente orde diferenzan tempo e espazo.
+Tentar resolver este problema pode facerse de dúas maneiras: reducir tempo e espazo a etiquetas ou promocionar ambos a operadores. Estas dúas vías dan lugar, respectivamente, á Teoría Cuántica de Campos e á Teoría de Cordas. Para máis detalles, véxase o capítulo 1 de \cite{Srednicki}.
+
+\subsection*{Problema 4}
+
+Nótese que actuar dúas veces co operador $\nabla$ non é equivalente ao operador laplaciano $\nabla^2$ en xeral:
+\begin{equation}
+	\nabla^2 f \equiv (\nabla \cdot \nabla) f \neq \nabla \cdot (\nabla \cdot f).
+\end{equation}
+\noindent
+A igualdade darase só se $f$ é irrotacional: $\nabla \times f = 0$.
+
+\subsection*{Problema 5}
+
+Dada unha función de cadrado integrable, $f(x) \in L^2$, a súa integral a todo o espazo será invariante baixo translacións:
+\begin{equation}
+	\int_{-\infty}^{\infty} \mathrm{d}x \, f(x) = \int_{-\infty}^{\infty} \mathrm{d}x \, f(x-a).
+\end{equation}
+
+Dada unha función de cadrado integrable impar, $f_\mathrm{impar}(x) \in L^2$, a súa integral a todo o espazo será nula:
+\begin{equation}
+	\int_{-\infty}^{\infty} \mathrm{d}x \, f_\mathrm{impar}(x) = 0.
+\end{equation}
+
+\begin{center} \hrule \end{center}
+
+As integrais gausianas están tabuladas, polo que é interesante reescribir as integrais que desexamos facer coma integrais gausianas. Para elo, debemos completar cadrados, que consiste en reescribir o exponente da exponencial coma un cadrado puro máis unha constante:
+\begin{equation}
+	-B(x-C)^2 + i(D-k)x = (x+ \Gamma)^2 + \Delta,
+\end{equation} 
+\noindent
+onde $\Gamma$ e $\Delta$ se obteñen expandindo ambos lados da ecuación e igualando os polinomios en $x$ potencia a potencia, debido á ortogonalidade dos polinomios:
+\begin{equation}
+	a_0 + a_1 x + a_2 x^2 = b_0 + b_1 x + b_2 x^2 ~~\Longrightarrow~~ a_i = b_i.
+\end{equation}
+
+\begin{center} \hrule \end{center}
+
+Ao facer a transformada de Fourier dunha onda plana (unha gausiana), o resultado segue sendo unha gausiana.
+
+\subsection*{Problema 7}
+
+As ondas planas teñen unha dependecia temporal harmónica, correspondente cun factor $e^{-i\omega t}$. Esto da lugar a que a densidade de probabilidade sexa invariante co tempo, o que implica que a partícula se propaga sen dispersarse:
+\begin{equation}
+	\psi(x,t) = \psi(x,0) e^{-i\omega t} ~~\Longrightarrow~~ |\psi|^2 = \psi^*(x,t) \psi(x,t) = \psi^*(x,0) \psi(x,0)
+\end{equation}
+
+\subsection*{Problema 9}
+
+Ao empregar a regra da cadea e o teorema fundamental do cálculo, atopamos que aparecen os factores
+\begin{equation}
+	 \psi(x) e^{-ikx} \Big |_{-\infty}^{\infty} + \left(\frac{\partial \psi}{\partial x}\right) e^{-ikx} \Big |_{-\infty}^{\infty},
+\end{equation}
+\noindent
+onde $\psi(x)$ é unha función de cadrado integrable. No primeiro temos un produto dunha función socilante e unha de cadrado integrable, que segue a ser unha función de cadrado integrable e anúlase nos infinitos. No segundo termo temos a derivada dunha función de cadrado integrable, que converxe aínda máis rapidamente a cero, polo que o produto ca función oscilante tamén se anula no infinito.
+
+\begin{center} \hrule \end{center}
+
+No apartado a), no último paso do cálculo da función de onda no espazo de posicións atopamos a integral
+\begin{equation}
+	I(x) = \int_{-\infty}^\infty \mathrm{d}k \, \left(\frac{e^{ikx}}{k^2 + A^2}\right).
+\end{equation}
+\noindent
+Esta integral resólvese empregando o teorema do residuo. Debido á presenza do factor $e^{ikx}$, teremos que ter coidado de elixir a traxectoria no plano complexo para que a función de onda resultante $\psi(x)$ sexa ben comportada: o factor exponencial na posición debe ser de cadrado integrable, $e^{-|x|}$. Así, rodearemos o polo $k_-=-iA$ para $x<0$ e o polo $k_+=+iA$ para $x>0$.
+
+\begin{center} \hrule \end{center}
+
+O procedemento para resolver o apartado b) é similar ao a), pero chegaremos a un paso no que necesitamos resolver dúas ecuacións que non teñen solución a partir de funcións elementais. O procedemento a seguir nestes casos é representar as funcións gráficamente e atopar os puntos de corte.
+
+Neste problema, ademáis, requerimos que exista unha solución para cada unha das ecuacións
+\begin{equation}
+	\pm \left(1 - \frac{\hbar^2 A}{m \alpha} \right) = e^{-lA}.
+\end{equation}
+\noindent
+Para o caso $-$, é sinxelo comprobar gráficamente que sempre existirá solución. Para o caso $+$, necesitamos que a pendente preto de $A=0$ da exponencial sexa máis pronunciada que a da recta, de maneira que exista un punto de corte máis adiante. A pendente virá dada por
+\begin{equation}
+	\frac{\mathrm{d}}{\mathrm{d}A} (e^{-lA}) = -l e^{-lA},
+\end{equation}
+\noindent
+que para $A \approx 0$ se aproxima a $-l$. Polo tanto, necesitamos que $l > \frac{\hbar^2}{m\alpha}$.
+
+\newpage
+\section*{Boletín 6: Mecánica ondulatoria, momento angular}
+
+\subsection*{Problema 3}
+
+Sempre que se calcule a función de onda nun potencial cadrado, é necesario que algunha das amplitudes sexa un dato do problema. Usualmente, esta será a amplitude incidente.
+
+\subsection*{Problema 5}
+
+Un potencial harmónico ten a forma $V(x) \sim x^2$, e unha partícula nun potencial desta forma compórtase coma un oscilador harmónico, cas súas correspondentes autofuncións e autovalores.
+
+\subsection*{Problema 11}
+
+Ao traballar con operadores conxugados ca exponencial doutro, será necesario recurrir á fórmula BCH:
+\begin{equation}
+	e^{A} B e^{-A} = B + [A,B] + \frac{1}{2!} [A,[A,B]] + \cdot\cdot\cdot + \frac{1}{n!} [A,\cdot\cdot\cdot [A,B]] + \cdot\cdot\cdot
+\end{equation}
+
+\begin{center} \hrule \end{center}
+
+Tendo en conta que no lado dereito da ecuación que queremos demostrar aparecen un coseno e un seno, imos ter que separar os termos do lado esquerdo en potencias pares e impares para recuperar as series de Taylor correspondentes:
+\begin{equation}
+\begin{gathered}
+	\cos x := \sum_{k=0}^\infty \frac{(-1)^k}{2k!} x^{2k}, \\
+	\sin x := \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)!} x^{2k+1}.
+\end{gathered}
+\end{equation}
+
+\subsection*{Problema 13}
+
+No apartado b), o estado $\ket{\textbf{n}}$ está caracterizado por
+\begin{equation}
+	(\textbf{n} \cdot \textbf{L})\ket{\textbf{n}} = \hbar \ket{\textbf{n}}, ~~~~ L^2 \ket{\textbf{n}} = 2\hbar \ket{\textbf{n}}.
+	\label{eq:n_cond}
+\end{equation}
+\noindent
+A segunda ecuación é un caso particular da condición xeral
+\begin{equation}
+	L^2 \ket{\textbf{n}} = \hbar l(l+1) \ket{\textbf{n}},
+\end{equation}
+\noindent
+con $l=1$, de xeito que queda determinado este número cuántico. Esto implica que $n=2$ e $m=-1,0,+1$, de xeito que o estado se pode escribir na base
+\begin{equation}
+	\ket{\textbf{n}} = c_- \ket{2,1,-1} + c_0 \ket{2,1,0} + c_+ \ket{2,1,+1}.
+	\label{eq:n}
+\end{equation}
+\noindent
+Deberemos determinar os coeficientes $c_i$ a partir da primeira condición en \eqref{eq:n_cond}.
+
+\begin{center} \hrule \end{center}
+
+Para actuar cos operadores de momento angular ou espín, os estados sobre os que é máis sinxelo facelo son os autoestados de $L_z$ ou $S_z$:
+\begin{equation}
+	L_z \ket{nlm_l} = \hbar m_l \ket{nlm_l}, ~~~~ S_z \ket{m_s} = \hbar m_s \ket{nsm_s}.
+\end{equation}
+\noindent
+Tomando estos estados como base, deberemos cambiar os operadores $L_x,L_y$ e $S_x,S_y$ polos operadores escaleira:
+\begin{equation}
+	L_\pm = L_x \pm i L_y, ~~~~ S_\pm = S_x \pm i S_y,
+\end{equation}
+\noindent
+que actúan segundo
+\begin{equation}
+\begin{gathered}
+	L_\pm \ket{nlm_l} = \hbar \sqrt{l(l+1) - m_l(m_l \pm 1)} \ket{nlm_l}, \\
+	S_\pm \ket{nsm_s} = \hbar \sqrt{s(s+1) - s_l(s_l \pm 1)} \ket{nsm_s}
+\end{gathered}
+\end{equation}
+
+\begin{center} \hrule \end{center}
+
+Unha vez obtidas as tres ecuacións correspondentes para os coeficientes $c_i$, non serán suficientes para determinar totalmente os coeficientes complexos. Poderemos obter $c_\pm$ en función de $c_0$ e, igual que se fixo en problemas anteriores, poderemos tomar $c_0 \in \mathbb{R}$ debido a que o único físicamente relevante é a fase relativa entre os coeficientes. Para determinar finalmente $c_0$, deberemos tamén impoñer que o estado \eqref{eq:n} estea normalizado.
+
+\subsection*{Problema 14}
+
+Recórdese que a definición do momento angular total $J$ consiste na suma do momento angular de dous sistemas diferentes:
+\begin{equation}
+	J = J_1 + J_2 = J_1 \otimes I + I \otimes J_2.
+\end{equation}
+\noindent
+É importante recordar sobre que sistema actúa cada operador, xa que ao facer produtos entre eles esto determinará se conmutan ou non.
+
+Sobre o mesmo sistema, os operadores de momento angular non conmutan:
+\begin{equation}
+	[J_{(1,2)i},J_{j(1,2)}] = i \hbar \epsilon_{ijk} J_{k(1,2)},
+\end{equation}
+\noindent
+pero se estes actúan sobre diferentes sistemas si conmutan:
+\begin{equation}
+	[J_1,J_2] \equiv [J_1 \otimes I, I \otimes J_2] = [J_1,I] \otimes [I,J_2] = 0.
+\end{equation}
+
+\begin{center} \hrule \end{center}
+
+Para entender mellor as álxebras de Lie e os grupos de Lie aplicados á mecánica cuántica, eu recomendo o libro \cite{Woit}.
+
+\subsection*{Problema 16}
+
+A notación deste problema é bastante confusa. Traballaremos cun operador de espín $S_{\textbf{z}'}$, nunha dirección $\textbf{z}'$ que forma un ángulo $\theta$ co eixo $\hat{z}$. Esto pode dar a entender que ten algunha relación particular ca direción $\hat{z}$ pero, en realidade, non define nada concreto: a dirección é
+\begin{equation}
+	\textbf{z}' = \sin \theta \cos \varphi \hat{x} + \sin \theta \sin \varphi \hat{y} + \cos \theta \hat{z},
+\end{equation}
+\noindent
+que non é máis que un vector arbitrario. O operador de espín co que traballaremos será
+\begin{equation}
+	S_{\textbf{z}'} = \textbf{z}' \cdot \textbf{S} = \sin \theta \cos \varphi S_x + \sin \theta \sin \varphi S_y + \cos \theta S_z.
+\end{equation}
+
+De novo, este operador será máis conveniente escrito en función de $S_\pm$ e $S_z$, cos que é moi sinxelo actuar sobre os autoestados de $S_z$, $\ket{m_s}$. Porén, para atopar os autoestados de $S_{\textbf{z}'}$, $\ket{m_{\textbf{z}'}}$, escribirémolos en función dos autoestados de $S_z$:
+\begin{equation}
+	\ket{m_{\textbf{z}'}} = c_- \ket{-1} + c_0 \ket{0} + c_+ \ket{+1}.
+\end{equation}
+
+\newpage
+\section*{Boletín 7: Momento angular. Perturbacións}
+
+Segundo o caso, as correccións ao hamiltoniano poden escribirse co parámetro perturbativo incluido ou non:
+\begin{equation}
+	H = H_0 + V ~~~~\text{ou}~~~~ H = H_0 + \lambda V.
+\end{equation}
+\noindent
+Á hora de obter as expresións das correccións perturbativas debemos ter en conta que caso estamos empregando. Nas expresións dos apuntes, considérase que a corrección é $\lambda V$, de xeito que se omite o factor $\lambda$ ao calcular as $E^{(k)}_n$ e a enerxía total será
+\begin{equation}
+	E_n = E^{(0)}_n + \sum_{k=1}^\infty \lambda^k E^{(k)}_n
+\end{equation}
+Poderedes atopar bibliografía na que se considere o outro caso, de xeito que
+\begin{equation}
+	E_n = E^{(0)}_n + \sum_{k=1}^\infty  \tilde{E}^{(k)}_n,
+\end{equation}
+\noindent
+onde $\tilde{E}^{(k)}_n = \lambda^k E^{(k)}_{n}$.
+
+\newpage
+\begin{thebibliography}{}
+	\bibitem{le_Bellac} Le Bellac M. (2006), \textit{Quantum Physics}, Cambridge University Press.
+
+	\bibitem{CHSH_game} IBM Quantum Learning, \textit{CHSH game}, en \textit{Basics of Quantum Information: Entanglement in Action}, IBM, [Consultado o 14/05/2026], <\verb+https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/chsh-game+>
+
+	\bibitem{Srednicki} Srednicki M. (2006), \textit{Quantum Field Theory}, Cambridge University Press.
+
+	\bibitem{Woit} Woit P. (2017), \textit{Quantum Theory, Groups and Representations}, Springer. [Dispoñible en liña en \verb+https://www.math.columbia.edu/~woit/QM/+]
+\end{thebibliography}
+
+\end{document}
