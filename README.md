@@ -1,4 +1,4 @@
-### Repositorio para o material docente
+# Repositorio para o material docente
 
 ## Cursos
 - `fc2`: Física Cuántica II - 2025/2026
