@@ -11,28 +11,29 @@ mpl.use("QtAgg")
 #####
 
 def alpha_m(l):
-    return np.sqrt(-l)*np.tanh(np.sqrt(-l))
-
+    #return np.sqrt(-l)*np.tanh(np.sqrt(-l))
+    return l*np.tanh(l)
+    
 def alpha_p(l):
     return -l*np.tan(l)
 
 ##### alpha_m
-"""
-L = np.linspace(-5,0,500)
+
+L = np.linspace(0,5,500)
 
 plt.plot(L,alpha_m(L),"r-")
 
 plt.title(r"$\alpha(\lambda) = \sqrt{-\lambda} \tanh( \sqrt{-\lambda} )$")
-plt.xlabel(r"$\lambda$")
+plt.xlabel(r"$\sqrt{-\lambda}$")
 plt.ylabel(r"$\alpha(\lambda)$")
 
-plt.xlim([-5,0])
-plt.ylim([0,2.5])
+plt.xlim([0,5])
+plt.ylim([0,5])
 
 plt.show()
-"""
-##### alpha_p
 
+##### alpha_p
+"""
 L1 = np.linspace(0,np.pi/2,100)
 L2 = np.linspace(np.pi/2+0.01,3*np.pi/2,100)
 L3 = np.linspace(3*np.pi/2+0.01,5*np.pi/2,100)
@@ -53,3 +54,4 @@ plt.xlim([0,8])
 plt.ylim([-15,15])
 
 plt.show()
+"""
